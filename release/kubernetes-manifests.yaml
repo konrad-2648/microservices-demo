@@ -248,7 +248,6 @@ spec:
   selector:
     matchLabels:
       app: frontend
-  replicas: 2
   template:
     metadata:
       labels:
@@ -572,7 +571,7 @@ spec:
   selector:
     matchLabels:
       app: loadgenerator
-  replicas: 1
+  replicas: 10
   template:
     metadata:
       labels:
@@ -625,7 +624,7 @@ spec:
         - name: FRONTEND_ADDR
           value: "frontend:80"
         - name: USERS
-          value: "10"
+          value: "200"
         resources:
           requests:
             cpu: 300m
@@ -917,3 +916,17 @@ spec:
   selector:
     matchLabels:
       app: frontend
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 10
