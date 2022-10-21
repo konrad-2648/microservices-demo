@@ -18,7 +18,7 @@
 
 # [START gke_release_kubernetes_manifests_microservices_demo]
 
-# TRIGGER TEST
+# TRIGGER TEST 2
 
 ---
 apiVersion: apps/v1
