@@ -571,7 +571,7 @@ spec:
   selector:
     matchLabels:
       app: loadgenerator
-  replicas: 10
+  replicas: 1
   template:
     metadata:
       labels:
@@ -624,7 +624,7 @@ spec:
         - name: FRONTEND_ADDR
           value: "frontend:80"
         - name: USERS
-          value: "200"
+          value: "10"
         resources:
           requests:
             cpu: 300m
